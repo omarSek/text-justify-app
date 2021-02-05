@@ -1,20 +1,20 @@
-const joinALineWithSpace = function(words, start, end, num_spaces) {
-    let num_words_curr_line = end - start + 1
+const joinALineWithSpace = function(words, start, end, numSpaces) {
+    let numWordsCurrLine = end - start + 1
     let line = ''
      
     for (let i = start; i < end ; i++) {
         line += words[i]
-        --num_words_curr_line
-        let num_curr_space = Math.ceil(num_spaces/num_words_curr_line)
-        // console.log(num_spaces + ' ' + num_words_curr_line)
-        line += ' '.repeat(num_curr_space)
-        num_spaces -= num_curr_space
+        --numWordsCurrLine
+        let numCurrSpace = Math.ceil(numSpaces/numWordsCurrLine)
+        // console.log(numSpaces + ' ' + numWordsCurrLine)
+        line += ' '.repeat(numCurrSpace)
+        numSpaces -= numCurrSpace
 
     }
     
     
     line += words[end]
-    line += ' '.repeat(num_spaces)
+    line += ' '.repeat(numSpaces)
     
     return line
 }
@@ -22,54 +22,54 @@ const joinALineWithSpace = function(words, start, end, num_spaces) {
 
 const justifyText = function (words, lineLength = 80) {
     
-    let curr_line_start = 0 
-    let num_words_curr_line = 0 
-    let curr_line_length = 0 
+    let currLineStart = 0 
+    let numWordsCurrLine = 0 
+    let currLineLength = 0 
 
     let result = []
     for (let i = 0 ; i < words.length ; i++){
-        num_words_curr_line ++
+        numWordsCurrLine ++
         // le 3eme operand pour ajouter le nombre d'éspace
-        let lookahead_line_length = curr_line_length + words[i].length + (num_words_curr_line - 1)
+        let lookadeadLineLength = currLineLength + words[i].length + (numWordsCurrLine - 1)
         
-        if (lookahead_line_length === lineLength ) {
+        if (lookadeadLineLength === lineLength ) {
             // le 3eme operand c'est aussi le nombre d'espace 
-            let ans = joinALineWithSpace(words, curr_line_start, i, i - curr_line_start )
+            let ans = joinALineWithSpace(words, currLineStart, i, i - currLineStart )
             result.push(ans)
 
-            curr_line_start = i + 1
-            num_words_curr_line = 0
-            curr_line_length = 0 
+            currLineStart = i + 1
+            numWordsCurrLine = 0
+            currLineLength = 0 
 
-        } else if (lookahead_line_length > lineLength){
+        } else if (lookadeadLineLength > lineLength){
             console.log('ici 2')
             let ans = joinALineWithSpace(
                             words,
-                            curr_line_start, 
+                            currLineStart, 
                             i - 1, 
-                            lineLength - curr_line_length)
+                            lineLength - currLineLength)
             result.push(ans)
 
-            curr_line_start = i
-            num_words_curr_line = 1
-            curr_line_length = words[i].length
+            currLineStart = i
+            numWordsCurrLine = 1
+            currLineLength = words[i].length
         } 
         
         else {
-            curr_line_length += words[i].length
+            currLineLength += words[i].length
         }
     }
 
-    if (num_words_curr_line > 0 ) {
+    if (numWordsCurrLine > 0 ) {
 
         let lastLine = joinALineWithSpace(
             words,
-            curr_line_start,
+            currLineStart,
             words.length - 1,
-            num_words_curr_line - 1  
+            numWordsCurrLine - 1  
         )
         
-        lastLine += ' '.repeat(lineLength - curr_line_length - (num_words_curr_line - 1))
+        lastLine += ' '.repeat(lineLength - currLineLength - (numWordsCurrLine - 1))
         
         
         result.push(lastLine)
