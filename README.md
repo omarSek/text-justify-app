@@ -1,7 +1,6 @@
 # text-justify-app
 
-text justify App
-=======
+Ce projet est pour objectif de créer un API pour justifier les textes selon un nombre bien défini de caractère par ligne, en authentifiant. il permet aussi de passer au mode payment si l'utilisateur dépasse un certain limit de caractère par jour.
 
 End point
 -----------
