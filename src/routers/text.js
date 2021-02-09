@@ -5,7 +5,7 @@ const rateLimit = require('../middlaware/rateLimit')
 
 const router = new express.Router()
 
-router.post('/api/justify', auth,  async (req, res) => {
+router.post('/api/justify', auth, rateLimit, async (req, res) => {
     const text = new Text({
         ...req.body,
         longeurText: req.body.text.length,
@@ -17,8 +17,7 @@ router.post('/api/justify', auth,  async (req, res) => {
         
         
         res.set('Content-Type', 'text/plain; charset=utf-8');
-        //res.status(201).send({textJustify})
-        res.status(201).send({textJustify})
+        res.status(201).send( textJustify)
     } catch (e) {
         res.status(400).send(e)
     }
