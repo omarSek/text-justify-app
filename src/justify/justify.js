@@ -89,7 +89,7 @@ const justifyText = function (words, lineLength = 80) {
 const printJustifiedText = function (result) {
     let resultFinal = ''
     result.forEach(element => {
-        resultFinal += element + '\n'
+        resultFinal += element + '\\n'
     });
     return resultFinal
 }

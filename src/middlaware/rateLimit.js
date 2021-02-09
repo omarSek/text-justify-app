@@ -22,13 +22,13 @@ const rateLimit = async (req, res, next) => {
                 $group: {
                     _id: null,
                     totalLength: {
-                        //$sum: { $strLenCP: "$text" }
-                        $sum: "$longeurText"
+                        $sum: { $strLenCP: "$text" }
+                        ///$sum: "$longeurText"
                     }
                 }
             }
         ]).exec()
-        console.log(totalTextLength)
+        
         if (totalTextLength.length && totalTextLength[0].totalLength > maxLimitCharPerDay) {
             return res.status(402).send({ error: 'Payment required' });
         }
